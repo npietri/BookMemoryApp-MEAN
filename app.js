@@ -30,5 +30,15 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   res.send(err.status);
 });
+//mongoDB COnnection
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost:27017/BookSchema', {
+  promiseLibrary: require('bluebird'),
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useCreateIndex: true
+}).then(() => console.log('connection successful'))
+  .catch((err) => console.error(err));
+
 
 module.exports = app;
