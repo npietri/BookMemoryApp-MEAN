@@ -17,13 +17,8 @@ import {
 })
 export class BookEditComponent implements OnInit {
   bookForm: FormGroup;
-  id: string = '';
-  isbn: string = '';
-  title: string = '';
-  description: string = '';
-  author: string = '';
-  publisher: string = '';
-  published_year: string = '';
+  id: any;
+  matcher: any;
 
   constructor(
     private router: Router,
@@ -58,17 +53,17 @@ export class BookEditComponent implements OnInit {
     });
   }
 
-  // onFormSubmit(id) {
-  //   this.api.updateBook(this.id).subscribe(
-  //     (res) => {
-  //       let id = res['_id'];
-  //       this.router.navigate(['/book-details', id]);
-  //     },
-  //     (err) => {
-  //       console.log(err);
-  //     }
-  //   );
-  // }
+  onFormSubmit(form: NgForm) {
+    this.api.updateBook(this.id, form).subscribe(
+      (res) => {
+        let id = res['_id'];
+        this.router.navigate(['/book-details', id]);
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }
 
   bookDetails() {
     this.router.navigate(['/book-details', this.id]);

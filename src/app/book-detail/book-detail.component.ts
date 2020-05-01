@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../api.service';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-book-detail',
@@ -8,7 +9,7 @@ import { ApiService } from '../api.service';
   styleUrls: ['./book-detail.component.css'],
 })
 export class BookDetailComponent implements OnInit {
-  book = {};
+  book: any = {};
 
   constructor(
     private route: ActivatedRoute,

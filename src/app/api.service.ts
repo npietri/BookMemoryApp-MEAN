@@ -32,6 +32,7 @@ export class ApiService {
     // return an observable with a user-facing error message
     return throwError('Something bad happened; please try again later.');
   }
+
   private extractData(res: Response) {
     let body = res;
     return body || {};
@@ -56,9 +57,10 @@ export class ApiService {
       .pipe(catchError(this.handleError));
   }
 
-  updateBook(data): Observable<any> {
+  updateBook(id: string, data): Observable<any> {
+    const url = `${apiUrl}/${id}`;
     return this.http
-      .put(apiUrl, data, httpOptions)
+      .put(url, data, httpOptions)
       .pipe(catchError(this.handleError));
   }
 

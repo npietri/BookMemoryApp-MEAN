@@ -9,6 +9,7 @@ import {
   NgForm,
   Validators,
 } from '@angular/forms';
+import { BookDataSource } from '../book/book.component';
 @Component({
   selector: 'app-book-create',
   templateUrl: './book-create.component.html',
@@ -16,13 +17,11 @@ import {
 })
 export class BookCreateComponent implements OnInit {
   bookForm: FormGroup;
-  isbn: string = '';
-  title: string = '';
-  description: string = '';
-  author: string = '';
-  publisher: string = '';
-  published_year: string = '';
-  matcher: string = '';
+
+  books: any;
+  matcher: any;
+  displayedColumns = ['isbn', 'title', 'author'];
+  dataSource = new BookDataSource(this.api);
 
   constructor(
     private router: Router,
