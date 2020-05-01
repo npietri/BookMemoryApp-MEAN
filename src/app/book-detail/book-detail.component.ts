@@ -9,13 +9,14 @@ import { ApiService } from '../api.service';
 })
 export class BookDetailComponent implements OnInit {
   book = {};
+
   constructor(
     private route: ActivatedRoute,
     private api: ApiService,
     private router: Router
   ) {}
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.getBookDetails(this.route.snapshot.params['id']);
   }
 

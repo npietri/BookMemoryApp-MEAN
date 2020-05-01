@@ -3,7 +3,7 @@ var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
-
+var Book = require('./models/book');
 var apiRouter = require('./routes/book');
 
 var app = express();
@@ -37,8 +37,36 @@ mongoose.connect('mongodb://localhost:27017/BookSchema', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true
-}).then(() => console.log('connection successful'))
+}).then(() => console.log('connection Mango successful'))
   .catch((err) => console.error(err));
 
+
+
+app.post('/api/stuff', (req, res, next) => {
+  const book = new Book({
+    // isbn: req.body.isbn,
+    // title: req.body.title,
+    // author: req.body.author,
+    // description: req.body.description,
+    // published_year: req.body.published_year,
+    // imageUrl: req.body.imageUrl,
+    // publisher: req.body.publisher,
+    // userId: req.body.userId,
+    // updated_date: req.body.updated_date,
+  });
+  thing.save().then(
+    () => {
+      res.status(201).json({
+        message: 'Post saved successfully!'
+      });
+    }
+  ).catch(
+    (error) => {
+      res.status(400).json({
+        error: error
+      });
+    }
+  );
+});
 
 module.exports = app;

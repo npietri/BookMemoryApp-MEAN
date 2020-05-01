@@ -6,8 +6,11 @@ var BookSchema = new mongoose.Schema({
   author: String,
   description: String,
   published_year: String,
+  imageUrl: String,
   publisher: String,
-  updated_date: { type: Date, default: Date.now },
+  userId: String,
+  //updated_date: { type: Date, default: Date.now },
+
 });
 
-module.exports = mongoose.model('BookSchema', BookSchema);
+module.exports = mongoose.model('Book', BookSchema);
